@@ -1,14 +1,11 @@
-const http = require('http');
+const express = require("express");
+const app = express();
+const port = 8000;
 
-// This server will respond to all requests (regardless of path) with "hello world"
-const server = http.createServer((request, response) => {
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  response.end("hello world");
-
-  // Put a message in the logs as well unless that's been disabled:
-  if (process.env.NO_DEBUG) { return; }
-  console.log(`Requested ${request.url}`);
+app.get("/", (req, res) => {
+  res.send("Hello, Express World");
 });
 
-server.listen(80);
-console.log('Server is now listening!!');
+app.listen(port, () => {
+  console.log(`Server is Running!`);
+});
